@@ -1,0 +1,39 @@
+.page {
+  background-color: #94a7b6;
+  height: 100%;
+}
+
+.spacer {
+  background-color: #94a7b6;
+  height: 20px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffc000;
+  font-size: 20px;
+}
+
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show > .nav-link {
+  border-bottom: 3px solid #ffc000;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1.8rem;
+  text-decoration: none;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #fff;
+  line-height: 1.8rem;
+}
+
+.breather-right {
+  margin-right: 20px;
+}
+
+.breather-right-x2 {
+  margin-right: 40px;
+}
