@@ -4,4 +4,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # not rewrite css, js and images
 RewriteCond %{REQUEST_URI} !\.(?:css|js|map|jpe?g|gif|png)$ [NC]
-RewriteRule ^(.*)$ /applications/irl-reporting-site/index.html?path=$1 [NC,L,QSA]
+RewriteRule ^(.*)$ /applications/save-the-irl/index.html?path=$1 [NC,L,QSA]

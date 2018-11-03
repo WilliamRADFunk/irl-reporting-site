@@ -1,24 +1,30 @@
 .page {
-  background-color: #94a7b6;
+  background-color: #fff;
   height: 100%;
 }
 
 .spacer {
-  background-color: #94a7b6;
+  background-color: #00bc66;
   height: 20px;
+  margin-bottom: 20px;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-  color: #ffc000;
-  font-size: 20px;
+.navbar-dark {
+  background-color: #101010;
+
+  & .navbar-nav .nav-link {
+    color: #9d9d9d;
+    font-size: 20px;
+  }
 }
 
 .navbar-dark .navbar-nav .active > .nav-link,
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link.show,
 .navbar-dark .navbar-nav .show > .nav-link {
-  border-bottom: 3px solid #ffc000;
+  border-bottom: 3px solid #fff;
   color: #fff;
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 24px;
   line-height: 1.8rem;
   text-decoration: none;
