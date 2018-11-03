@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Map } from 'leaflet';
 import * as L from 'leaflet';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -9,20 +10,28 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnDestroy, OnInit {
-  map;
+  private map: Map;
   @ViewChild('mapid') mapid: HTMLElement;
-  pathState: string;
-  subscription: Subscription = null;
-
+  private pathState: string;
+  private subscription: Subscription = null;
+  /**
+   * Class constructor for MapComponent
+   * @param currentRoute service that tracks current route.
+   */
   constructor(private readonly currentRoute: ActivatedRoute) { }
-
+  /**
+   * Angular life hook called just before component destruction.
+   * Used to unsubscribe from all subscriptions.
+   */
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
       this.subscription = null;
     }
   }
-
+  /**
+   * Angular life hook called when bound variables are resolved, but before anything else.
+   */
   ngOnInit() {
     this.subscription = this.currentRoute.url
       .subscribe((segments: UrlSegment[]) => {
@@ -38,6 +47,9 @@ export class MapComponent implements OnDestroy, OnInit {
       id: 'mapbox.streets'
     }).addTo(this.map);
   }
+  /**
+   * Called to grab the geo data for map population.
+   */
   private fetchData(): void {
     console.log('Fetching Date for ', this.pathState);
   }
