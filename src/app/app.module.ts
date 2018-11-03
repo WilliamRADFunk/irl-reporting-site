@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { MapComponent } from './components/map/map.component';
+import { TimePanelComponent } from './components/time-panel/time-panel.component';
 
 @NgModule({
-  declarations: [ AppComponent, HomeComponent, AboutComponent, MapComponent ],
+  declarations: [ AppComponent, HomeComponent, AboutComponent, MapComponent, TimePanelComponent ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),

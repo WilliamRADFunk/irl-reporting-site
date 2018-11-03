@@ -1,0 +1,29 @@
+ul {
+    background-color: #101010;
+    height: 100%;
+    list-style: none;
+}
+li {
+    color: #fff;
+    padding-top: 50px;
+}
+.nav-link {
+    color: #9d9d9d;
+    font-size: 1rem;
+}
+.active > .nav-link,
+.nav-link.active,
+.nav-link.show,
+.show > .nav-link {
+  border-bottom: 3px solid #fff;
+  color: #fff;
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  text-decoration: none;
+}
+.nav-link:focus,
+.nav-link:hover {
+  color: #fff;
+  line-height: 1.8rem;
+}
