@@ -1,0 +1,14 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark"><a class="navbar-brand breather-right-x2" href="http://www.williamrobertfunk.com/applications/save-the-irl" target="_blank"><img src="assets/images/logo.png"/></a>
+  <button class="navbar-toggler" (click)="toggleCollapseState()" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown" [ngClass]="{'show': showState}">
+    <ul class="navbar-nav" (click)="mobileCollapseState()">
+      <li class="nav-item breather-right" routerLinkActive="active"><a class="nav-link" routerLink="/home">Home<span class="sr-only">(current)</span></a></li>
+      <li class="nav-item breather-right" routerLinkActive="active"><a class="nav-link" routerLink="/about">About</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="spacer"></div>
+<div class="page">
+  <router-outlet></router-outlet>
+</div>
