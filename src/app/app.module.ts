@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,7 @@ import { TimePanelComponent } from './components/time-panel/time-panel.component
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    HttpClientModule,
     AppRoutingModule
   ],
   schemas: [],
