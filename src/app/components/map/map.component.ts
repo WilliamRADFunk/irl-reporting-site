@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Control, Icon, Layer, Map, TileLayer } from 'leaflet';
 import * as L from 'leaflet';
+import 'leaflet.awesome-markers/dist/leaflet.awesome-markers';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -11,13 +12,50 @@ interface Observation {
   reportedDateTime: string;
 }
 
+const vegIcon = L['AwesomeMarkers'].icon({
+  icon: 'tree',
+  markerColor: 'green',
+  prefix: 'fa'
+});
+const garbageIcon = L['AwesomeMarkers'].icon({
+  icon: 'trash',
+  markerColor: 'orange',
+  prefix: 'fa'
+});
+const healthIcon = L['AwesomeMarkers'].icon({
+  icon: 'heartbeat',
+  markerColor: 'red',
+  prefix: 'fa'
+});
+const otherIcon = L['AwesomeMarkers'].icon({
+  icon: 'question-circle',
+  markerColor: 'cadetblue',
+  prefix: 'fa'
+});
+const microIcon = L['AwesomeMarkers'].icon({
+  icon: 'certificate',
+  markerColor: 'purple',
+  prefix: 'fa'
+});
+const fishIcon = L['AwesomeMarkers'].icon({
+  icon: 'qq',
+  markerColor: 'darkgreen',
+  prefix: 'fa'
+});
+const animalIcon = L['AwesomeMarkers'].icon({
+  icon: 'linux',
+  markerColor: 'black',
+  prefix: 'fa'
+});
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnDestroy, OnInit {
-  private baseLayer: TileLayer;
+  private openStreet: TileLayer;
+  private outdoors: TileLayer;
   private layers: Layer[] = [];
   private map: Map;
   @ViewChild('mapid') mapid: HTMLElement;
@@ -54,13 +92,17 @@ export class MapComponent implements OnDestroy, OnInit {
    */
   ngOnInit() {
     this.map = L.map('mapid').setView([28.2552946, -80.6761641], 9);
-    this.baseLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?' +
+    this.openStreet = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?' +
       'access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
       maxZoom: 18,
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       id: 'mapbox.streets'
+    }).addTo(this.map);
+    this.outdoors = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>,' +
+        ' &copy; <a  href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(this.map);
 
     this.subscriptions.push(this.currentRoute.data
@@ -74,7 +116,8 @@ export class MapComponent implements OnDestroy, OnInit {
    * Called to grab the geo data for map population.
    */
   private updateMap(): void {
-    this.layerControl = L.control.layers({ 'Open Street': this.baseLayer }).addTo(this.map);
+    this.layerControl = L.control.layers({ 'Outdoors': this.outdoors, 'Open Street': this.openStreet }).addTo(this.map);
+    L.control.scale({}).addTo(this.map);
     const scentLayers = [];
     this.rawData.scent.forEach(x => {
       scentLayers.push(L.circle([x.latitude, x.longitude], {
@@ -173,16 +216,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layerControl.addOverlay(algaeGroup, 'Algae');
     const deadAnimalsLayers = [];
     this.rawData.deadAnimals.forEach(x => {
-      deadAnimalsLayers.push(L.marker([x.latitude, x.longitude], { icon: new Icon({
-        iconUrl:       'assets/images/marker-icon-red.png',
-        iconRetinaUrl: 'assets/images/marker-icon-2x-red.png',
-        shadowUrl:     'assets/images/marker-shadow.png',
-        iconSize:    [25, 41],
-        iconAnchor:  [12, 41],
-        popupAnchor: [1, -34],
-        tooltipAnchor: [16, -28],
-        shadowSize:  [41, 41]
-      })})
+      deadAnimalsLayers.push(L.marker([x.latitude, x.longitude], { icon: animalIcon })
       .bindPopup(`
         <table class="table table-striped">
           <tr>
@@ -212,16 +246,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layerControl.addOverlay(deadAnimalsGroup, 'Dead Animals');
     const deadFishLayers = [];
     this.rawData.deadFish.forEach(x => {
-      deadFishLayers.push(L.marker([x.latitude, x.longitude], { icon: new Icon({
-        iconUrl:       'assets/images/marker-icon-violet.png',
-        iconRetinaUrl: 'assets/images/marker-icon-2x-violet.png',
-        shadowUrl:     'assets/images/marker-shadow.png',
-        iconSize:    [25, 41],
-        iconAnchor:  [12, 41],
-        popupAnchor: [1, -34],
-        tooltipAnchor: [16, -28],
-        shadowSize:  [41, 41]
-      })})
+      deadFishLayers.push(L.marker([x.latitude, x.longitude], { icon: fishIcon })
       .bindPopup(`
         <table class="table table-striped">
           <tr>
@@ -247,16 +272,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layerControl.addOverlay(deadFishGroup, 'Dead Fish');
     const garbageLayers = [];
     this.rawData.garbage.forEach(x => {
-      garbageLayers.push(L.marker([x.latitude, x.longitude], { icon: new Icon({
-        iconUrl:       'assets/images/marker-icon-yellow.png',
-        iconRetinaUrl: 'assets/images/marker-icon-2x-yellow.png',
-        shadowUrl:     'assets/images/marker-shadow.png',
-        iconSize:    [25, 41],
-        iconAnchor:  [12, 41],
-        popupAnchor: [1, -34],
-        tooltipAnchor: [16, -28],
-        shadowSize:  [41, 41]
-      })})
+      garbageLayers.push(L.marker([x.latitude, x.longitude], { icon: garbageIcon })
       .bindPopup(`
         <table class="table table-striped">
           <tr>
@@ -286,16 +302,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layerControl.addOverlay(garbageGroup, 'Garbage');
     const healthEffectsLayers = [];
     this.rawData.healthEffects.forEach(x => {
-      healthEffectsLayers.push(L.marker([x.latitude, x.longitude], { icon: new Icon({
-        iconUrl:       'assets/images/marker-icon-black.png',
-        iconRetinaUrl: 'assets/images/marker-icon-2x-black.png',
-        shadowUrl:     'assets/images/marker-shadow.png',
-        iconSize:    [25, 41],
-        iconAnchor:  [12, 41],
-        popupAnchor: [1, -34],
-        tooltipAnchor: [16, -28],
-        shadowSize:  [41, 41]
-      })})
+      healthEffectsLayers.push(L.marker([x.latitude, x.longitude], { icon: healthIcon })
       .bindPopup(`
         <table class="table table-striped">
           <tr>
@@ -325,16 +332,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layerControl.addOverlay(healthEffectsGroup, 'Health Effects');
     const micororganismsLayers = [];
     this.rawData.microorganisms.forEach(x => {
-      micororganismsLayers.push(L.marker([x.latitude, x.longitude], { icon: new Icon({
-        iconUrl:       'assets/images/marker-icon-green.png',
-        iconRetinaUrl: 'assets/images/marker-icon-2x-green.png',
-        shadowUrl:     'assets/images/marker-shadow.png',
-        iconSize:    [25, 41],
-        iconAnchor:  [12, 41],
-        popupAnchor: [1, -34],
-        tooltipAnchor: [16, -28],
-        shadowSize:  [41, 41]
-      })})
+      micororganismsLayers.push(L.marker([x.latitude, x.longitude], { icon: microIcon })
       .bindPopup(`
         <table class="table table-striped">
           <tr>
@@ -356,16 +354,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layerControl.addOverlay(micororganismsGroup, 'Micororganisms');
     const otherLayers = [];
     this.rawData.microorganisms.forEach(x => {
-      otherLayers.push(L.marker([x.latitude, x.longitude], { icon: new Icon({
-        iconUrl:       'assets/images/marker-icon-grey.png',
-        iconRetinaUrl: 'assets/images/marker-icon-2x-grey.png',
-        shadowUrl:     'assets/images/marker-shadow.png',
-        iconSize:    [25, 41],
-        iconAnchor:  [12, 41],
-        popupAnchor: [1, -34],
-        tooltipAnchor: [16, -28],
-        shadowSize:  [41, 41]
-      })})
+      otherLayers.push(L.marker([x.latitude, x.longitude], { icon: otherIcon })
       .bindPopup(`
         <table class="table table-striped">
           <tr>
@@ -391,16 +380,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layerControl.addOverlay(otherGroup, 'Other');
     const vegetationLayers = [];
     this.rawData.microorganisms.forEach(x => {
-      vegetationLayers.push(L.marker([x.latitude, x.longitude], { icon: new Icon({
-        iconUrl:       'assets/images/marker-icon-green.png',
-        iconRetinaUrl: 'assets/images/marker-icon-2x-green.png',
-        shadowUrl:     'assets/images/marker-shadow.png',
-        iconSize:    [25, 41],
-        iconAnchor:  [12, 41],
-        popupAnchor: [1, -34],
-        tooltipAnchor: [16, -28],
-        shadowSize:  [41, 41]
-      })})
+      vegetationLayers.push(L.marker([x.latitude, x.longitude], { icon: vegIcon})
       .bindPopup(`
         <table class="table table-striped">
           <tr>
