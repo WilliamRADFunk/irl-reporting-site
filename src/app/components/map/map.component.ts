@@ -43,7 +43,7 @@ const fishIcon = L['AwesomeMarkers'].icon({
   prefix: 'fa'
 });
 const animalIcon = L['AwesomeMarkers'].icon({
-  icon: 'linux',
+  icon: 'paw',
   markerColor: 'black',
   prefix: 'fa'
 });
@@ -91,7 +91,7 @@ export class MapComponent implements OnDestroy, OnInit {
    * Angular life hook called when bound variables are resolved, but before anything else.
    */
   ngOnInit() {
-    this.map = L.map('mapid').setView([28.2552946, -80.6761641], 9);
+    this.map = L.map('mapid').setView([27.9981, -80.5497], 14);
     this.openStreet = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?' +
       'access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
       maxZoom: 18,
@@ -123,7 +123,7 @@ export class MapComponent implements OnDestroy, OnInit {
       scentLayers.push(L.circle([x.latitude, x.longitude], {
         color: 'yellow',
         fillColor: '#fff',
-        fillOpacity: 0.5,
+        fillOpacity: 0.25,
         radius: 500
       })
       .bindPopup(`
@@ -154,7 +154,7 @@ export class MapComponent implements OnDestroy, OnInit {
       waterClarityLayers.push(L.circle([x.latitude, x.longitude], {
         color: 'brown',
         fillColor: '#725703',
-        fillOpacity: 0.5,
+        fillOpacity: 0.25,
         radius: 500
       }).bindPopup(`
         <table class="table table-striped">
@@ -184,7 +184,7 @@ export class MapComponent implements OnDestroy, OnInit {
       algaeLayers.push(L.circle([x.latitude, x.longitude], {
         color: 'green',
         fillColor: '#21C36F',
-        fillOpacity: 0.5,
+        fillOpacity: 0.25,
         radius: 500
       })
       .bindPopup(`

@@ -9,7 +9,7 @@ import { MonthResolver } from './resolvers/month/month.resolver';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/about', pathMatch: 'full' },
-  { path: 'home', children: [
+  { path: 'map', children: [
     {
       path: '',
       redirectTo: 'today',
