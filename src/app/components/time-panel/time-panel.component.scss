@@ -27,3 +27,9 @@ li {
   color: #fff;
   line-height: 1.8rem;
 }
+@media (max-width:770px) {
+    ul li {
+        display: inline-block;
+        padding-top: 0;
+    }
+}
