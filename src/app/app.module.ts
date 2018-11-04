@@ -11,6 +11,8 @@ import { MapComponent } from './components/map/map.component';
 import { TimePanelComponent } from './components/time-panel/time-panel.component';
 import { TodayResolver } from './resolvers/today/today.resolver';
 import { DataService } from './services/data/data.service';
+import { WeekResolver } from './resolvers/week/week.resolver';
+import { MonthResolver } from './resolvers/month/month.resolver';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { DataService } from './services/data/data.service';
     AppRoutingModule
   ],
   schemas: [],
-  providers: [ DataService, TodayResolver ],
+  providers: [ DataService, TodayResolver, WeekResolver, MonthResolver ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

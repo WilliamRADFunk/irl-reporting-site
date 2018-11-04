@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { TodayResolver } from './resolvers/today/today.resolver';
+import { WeekResolver } from './resolvers/week/week.resolver';
+import { MonthResolver } from './resolvers/month/month.resolver';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/about', pathMatch: 'full' },
@@ -22,11 +24,13 @@ const appRoutes: Routes = [
     {
       path: 'week',
       component: HomeComponent,
+      resolve: { data: WeekResolver },
       pathMatch: 'full'
     },
     {
       path: 'month',
       component: HomeComponent,
+      resolve: { data: MonthResolver },
       pathMatch: 'full'
     },
     {
