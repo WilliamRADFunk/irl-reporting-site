@@ -7,7 +7,7 @@
     "start:lint": "node_modules/.bin/concurrently --kill-others-on-fail \"npm run watch:lint\" \"npm start\"",
     "ng": "ng",
     "build": "run-s build:ng copy:configs",
-    "build:ng": "ng build --prod --base-href=/applications/save-the-irl/",
+    "build:ng": "ng build --prod --base-href=/applications/sense-the-irl/",
     "server": "ng serve",
     "ng-test": "ng test --code-coverage",
     "test:single": "ng test --code-coverage --watch=false",
