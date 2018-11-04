@@ -13,21 +13,21 @@ export class DataService {
     const headers = new HttpHeaders()
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json');
-    
+
     return this.http.get<any>(`${DATA_URL}data/today`, {headers});
   }
   getWeekData() {
     const headers = new HttpHeaders()
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json');
-    
+
     return this.http.get<any>(`${DATA_URL}data/week`, {headers});
   }
   getMonthData() {
     const headers = new HttpHeaders()
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json');
-    
+
     return this.http.get<any>(`${DATA_URL}data/month`, {headers});
   }
 }
