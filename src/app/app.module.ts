@@ -9,9 +9,17 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { MapComponent } from './components/map/map.component';
 import { TimePanelComponent } from './components/time-panel/time-panel.component';
+import { TodayResolver } from './resolvers/today/today.resolver';
+import { DataService } from './services/data/data.service';
 
 @NgModule({
-  declarations: [ AppComponent, HomeComponent, AboutComponent, MapComponent, TimePanelComponent ],
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    HomeComponent,
+    MapComponent,
+    TimePanelComponent
+  ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
@@ -19,7 +27,7 @@ import { TimePanelComponent } from './components/time-panel/time-panel.component
     AppRoutingModule
   ],
   schemas: [],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ DataService, TodayResolver ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
