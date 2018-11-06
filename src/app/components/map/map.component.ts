@@ -107,7 +107,6 @@ export class MapComponent implements OnDestroy, OnInit {
 
     this.subscriptions.push(this.currentRoute.data
       .subscribe(data => {
-        console.log('rawData', data.data);
         this.rawData = data.data || null;
         this.updateMap();
       }));
