@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Control, Icon, Layer, Map, TileLayer } from 'leaflet';
 import * as L from 'leaflet';
 import 'leaflet.awesome-markers/dist/leaflet.awesome-markers';
-import { ActivatedRoute, UrlSegment } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 interface Observation {
