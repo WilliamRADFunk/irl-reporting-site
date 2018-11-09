@@ -254,7 +254,7 @@ export class MapComponent implements OnDestroy, OnInit {
           </tr>
           <tr>
             <td>Quantity</td>
-            <td>${x.observation.quantity}</td>
+            <td>${x.observation}</td>
           </tr>
           <tr>
             <td>Reported</td>
@@ -352,7 +352,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layers.push(micororganismsGroup);
     this.layerControl.addOverlay(micororganismsGroup, 'Micororganisms');
     const otherLayers = [];
-    this.rawData.microorganisms.forEach(x => {
+    this.rawData.other.forEach(x => {
       otherLayers.push(L.marker([x.latitude, x.longitude], { icon: otherIcon })
       .bindPopup(`
         <table class="table table-striped">
@@ -378,7 +378,7 @@ export class MapComponent implements OnDestroy, OnInit {
     this.layers.push(otherGroup);
     this.layerControl.addOverlay(otherGroup, 'Other');
     const vegetationLayers = [];
-    this.rawData.microorganisms.forEach(x => {
+    this.rawData.vegetation.forEach(x => {
       vegetationLayers.push(L.marker([x.latitude, x.longitude], { icon: vegIcon})
       .bindPopup(`
         <table class="table table-striped">
