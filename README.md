@@ -1,5 +1,5 @@
 # irl-reporting-site
-(In-Progress) A front-end interface to report and view Indian River Lagoon data on a webpage(Hackathon - Hack the Indian River Lagoon).
+(Complete) A front-end interface to view Indian River Lagoon data on a webpage(Hackathon - Hack the Indian River Lagoon). A counterpart to the Android phone app that reports data (completed by teammate).
 
 While data sample entry sites exist already for the "clean up the Indian River Lagoon initiative", that data is technical and can often require volunteers to purchase materials and equipment, or undergo technical training.
 
@@ -8,6 +8,8 @@ This site focuses on the "softer" layer of community entered data. Where does a 
 From this data, technical volunteers might narrow down their search for where to collect samples rather than an entirely random sampling.
 
 In addition to assisting the technical volunteers, and potentially pulling information from the "hard" data sources, this site can display the health of the Indian River Lagoon similar to that of the weather channel for weather.
+
+![Interaction Example](https://github.com/WilliamRADFunk/irl-reporting-site/blob/master/src/assets/images/demo.gif)
 
 ---
 
