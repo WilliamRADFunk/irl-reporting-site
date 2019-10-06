@@ -1,5 +1,5 @@
 # irl-reporting-site
-(Complete) A front-end interface to view Indian River Lagoon data on a webpage(Hackathon - Hack the Indian River Lagoon). A counterpart to the Android phone app that reports data (completed by teammate).
+A front-end interface to view Indian River Lagoon data on a webpage(Hackathon - Hack the Indian River Lagoon). A counterpart to the Android phone app that reports data (completed by teammate).
 
 While data sample entry sites exist already for the "clean up the Indian River Lagoon initiative", that data is technical and can often require volunteers to purchase materials and equipment, or undergo technical training.
 
